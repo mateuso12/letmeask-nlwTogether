@@ -5,8 +5,12 @@ import { Link } from 'react-router-dom'
 
 import '../styles/auth.scss'
 import { Button } from "../components/Button";
+// import { useContext } from "react";
+// import { AuthContext } from "../contexts/AuthContext";
 
 export function NewRoom() {
+  // const [user] = useContext(AuthContext)
+
   return (
     <div id='page-auth'>
       <aside>
