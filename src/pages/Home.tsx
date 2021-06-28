@@ -3,13 +3,16 @@ import logoImg from "../assets/images/logo.svg";
 import googleIcon from "../assets/images/google-icon.svg";
 
 import { useHistory } from "react-router-dom";
+import { useAuth } from "../hooks/useAuth";
 import { FormEvent, useState } from "react";
 
-import { Button } from "../components/Button";
-import "../styles/auth.scss";
-import { useAuth } from "../hooks/useAuth";
+import { Button } from "../components/Button/Index";
+
 import { database } from "../services/firebase";
+
 import toast from "react-hot-toast";
+
+import "../styles/auth.scss";
 
 export function Home() {
   const history = useHistory();
@@ -34,7 +37,7 @@ export function Home() {
     const roomRef = await database.ref(`rooms/${roomCode}`).get();
 
     if(!roomRef.exists()){
-      toast.error('Room does not exists.')
+      toast.error('Sala não existe')
       return;
     }
 
