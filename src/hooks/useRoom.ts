@@ -36,6 +36,9 @@ export function useRoom(roomId: string) {
   const { user } = useAuth();
   const [questions, setQuestions] = useState<QuestionType[]>([]);
   const [title, setTitle] = useState("");
+  const [admin, setAdmin] = useState('');
+  const [loading, setLoading] = useState(true);
+  const [isEnded, setIsEnded] = useState(false)
 
   useEffect(() => {
     const roomRef = database.ref(`rooms/${roomId}`);
@@ -57,7 +60,9 @@ export function useRoom(roomId: string) {
           };
         }
       );
-
+      setAdmin(databaseRoom.authorId)
+      setIsEnded(!!databaseRoom.endedAt)
+      setLoading(false)
       setTitle(databaseRoom.title);
       setQuestions(parsedQuestions);
     });
@@ -67,5 +72,5 @@ export function useRoom(roomId: string) {
     }
   }, [roomId, user?.id]);
 
-  return { questions, title }
+  return { questions, title, admin, loading, isEnded }
 } 

@@ -12,6 +12,7 @@ interface User {
 
 type AuthContextType = {
   user: User | undefined;
+  userLoading: boolean;
   signInWithGoogle: () => Promise<void>;
 };
 
